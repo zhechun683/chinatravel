@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Leaflet需要的CSS，确保地图组件正常显示 */
+@import "leaflet/dist/leaflet.css";
+
+/* 自定义全局样式 */
+.text-overflow-ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@layer components {
+  ol.stepper li:not(:last-child) {
+    margin-right: 3.75rem;
+  }
+
+  ol.stepper li:not(:last-child)::before {
+    content: "";
+    z-index: -2;
+    top: 50%;
+    left: 100%;
+    position: absolute;
+    width: 70px;
+    height: 1px;
+    background-color: #e5e5e5;
+  }
+
+  ol.stepper li.active::after {
+    z-index: -1;
+    background: #ffffff;
+    border: 1px solid #e5e5e5;
+    transform: scale(1.2);
+  }
+
+  ol.stepper li.active ~ li::after {
+    content: none;
+  }
+}

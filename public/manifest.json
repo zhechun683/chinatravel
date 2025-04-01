@@ -1,0 +1,23 @@
+{
+  "name": "ChinaTravel",
+  "short_name": "ChinaTravel",
+  "description": "Discover the beauty of China with ChinaTravel",
+  "icons": [
+    {
+      "src": "/china.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/china.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ],
+  "theme_color": "#3258E8",
+  "background_color": "#FFFFFF",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait"
+} 
