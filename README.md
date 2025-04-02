@@ -14,6 +14,7 @@ China Travel is a modern tourism application that helps users explore travel des
 
 ### Mobile Experience
 <img src="./Phone.png" alt="Mobile Demo Screenshot" width="50%">
+
 *Demo video file location: DemoPhone.mp4 in project root directory*
 
 ## Features
