@@ -9,10 +9,10 @@ China Travel is a modern tourism application that helps users explore travel des
 ## Demo Videos
 
 ### Desktop Experience
-<video src="DemoLapTop.mp4" controls width="100%"></video>
+[View Desktop Demo Video](./DemoLapTop.mp4)
 
 ### Mobile Experience
-<video src="DemoPhone.mp4" controls width="100%"></video>
+[View Mobile Demo Video](./DemoPhone.mp4)
 
 ## Features
 
