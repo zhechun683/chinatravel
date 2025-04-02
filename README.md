@@ -1,28 +1,32 @@
-# China Travel PWA
+# China Travel
 
 A Progressive Web App (PWA) for exploring tourist destinations in China, built with Next.js.
+
+## Project Introduction
+
+China Travel is a modern tourism application that helps users explore travel destinations across China. The app offers a variety of features including destination browsing, attraction details, hotel bookings, and activity recommendations.
 
 ## Features
 
 - **Destination Browsing**: Explore famous tourist attractions across China
-- **Location Information**: View detailed information about each destination
+- **Detailed Information**: View detailed information and images for each destination
 - **Offline Support**: Basic offline functionality with custom offline page
-- **Responsive Design**: Interface suitable for various devices
-- **Multi-language Support**: Chinese and English interfaces
+- **Responsive Design**: Interface optimized for various devices
+- **PWA Support**: Can be installed on mobile device home screens for a native app-like experience
 
 ## Getting Started
 
-### Prerequisites
+### System Requirements
 
 - Node.js 18.x or higher
-- npm or yarn
+- npm or yarn package manager
 
-### Installation
+### Installation Steps
 
 1. Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/chinatravel.git
+git clone https://github.com/zhechun683/chinatravel.git
 cd chinatravel
 ```
 
@@ -30,25 +34,45 @@ cd chinatravel
 
 ```bash
 npm install
+# or using yarn
+yarn install
 ```
 
-3. Environment Configuration
+3. Generate PWA icons (optional)
 
-Create a `.env.local` file in the root directory with the following variables:
+```bash
+npm run generate-icons
+# or using yarn
+yarn generate-icons
+```
+
+4. Download map icons (optional)
+
+```bash
+npm run download-map-icons
+# or using yarn
+yarn download-map-icons
+```
+
+### Environment Configuration
+
+The project supports configuration through environment variables. Create a `.env.local` file in the project root directory with the following variables:
 
 ```
 NEXT_PUBLIC_AMAP_KEY=your_amap_api_key
 ```
 
-### Running the Application
+### Running the Project
 
 #### Development Mode
 
 ```bash
 npm run dev
+# or using yarn
+yarn dev
 ```
 
-The application will be available at [http://localhost:3000](http://localhost:3000).
+The application will be accessible at [http://localhost:3000](http://localhost:3000).
 
 #### Production Mode
 
@@ -56,101 +80,53 @@ Build the application:
 
 ```bash
 npm run build
+# or using yarn
+yarn build
 ```
 
 Start the production server:
 
 ```bash
 npm start
+# or using yarn
+yarn start
 ```
 
-### Mobile Usage
+### Usage
 
-The application is fully responsive and optimized for mobile devices:
+#### Desktop
+
+- Access the application URL in a browser
+- Browse recommended destinations on the homepage
+- Click on destination cards to view detailed information
+- Use the navigation menu to access attractions, hotels, and activities pages
+- Log in to your account to make bookings and manage your itinerary
+
+#### Mobile
+
+The application is fully optimized for mobile devices:
 
 1. **Mobile Browser Access**:
    - Open the application URL in a mobile browser
-   - The interface will automatically adapt to the screen size
+   - The interface automatically adapts to the screen size
+   - Use the bottom navigation bar to access main features
 
-2. **PWA Installation on Mobile**:
+2. **PWA Installation**:
    - On supported mobile browsers (Chrome, Safari), you'll see an "Add to Home Screen" option
    - After installation, the app will appear on your home screen with an app icon
    - Launch the app from the home screen for a full-screen, app-like experience
 
 3. **Offline Capabilities**:
    - Once installed, basic content will be available even without an internet connection
-   - Custom offline page will be displayed when trying to access unavailable content
-
-## PWA Configuration
-
-1. **Generate PWA Icons**
-
-   Install the icon generation tool:
-
-   ```bash
-   npm install sharp --save-dev
-   ```
-
-   Run the icon generation script:
-
-   ```bash
-   npm run generate-icons
-   ```
-
-   This will create all necessary icons in the `public/icons` directory.
-
-2. **Testing PWA Features**
-
-   - PWA features are disabled in development mode by default
-   - Use Chrome DevTools > Application > Service Workers and Manifest to check PWA configuration
-   - In supported browsers, you should see an installation prompt or install the app via the browser menu
-   - Test offline functionality by enabling "Offline" mode in DevTools
+   - A custom offline page will be displayed when trying to access unavailable content
 
 ## Deployment
 
-### Deploying to Vercel
-
-The easiest way to deploy this application is using Vercel:
-
-```bash
-npm install -g vercel
-vercel
-```
-
 ### Deploying to Netlify
 
-To deploy to Netlify:
+This project is configured for direct deployment to Netlify. After each push to the main branch, Netlify automatically builds and deploys the application.
 
-1. Create a `netlify.toml` file in the project root:
-
-```toml
-[build]
-  command = "npm run build"
-  publish = ".next"
-
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
-
-[build.environment]
-  NEXT_USE_NETLIFY_EDGE = "true"
-```
-
-2. Install Netlify Next.js plugin:
-
-```bash
-npm install -D @netlify/plugin-nextjs
-```
-
-3. Deploy using Netlify CLI:
-
-```bash
-npm install -g netlify-cli
-netlify login
-netlify init
-netlify deploy --prod
-```
-
-4. Configure environment variables in the Netlify dashboard.
+Access the deployed application: [https://china-travel.netlify.app](https://china-travel.netlify.app)
 
 ## Troubleshooting
 
@@ -159,7 +135,7 @@ If you encounter issues:
 1. Ensure all PWA-related files are correctly created (manifest.json, sw.js)
 2. Make sure all necessary icons have been generated
 3. Test PWA features in production build (disabled in development mode)
-4. Check browser console for error messages
+4. Check the browser console for error messages
 
 ## License
 
