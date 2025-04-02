@@ -3,16 +3,16 @@
 import { db } from "@/config/indexedDb";
 import { VacationItemTypes } from "./types";
 
-// 生成4.7-5.0之间的更均匀分布的随机评分
+// Generate a more evenly distributed random rating between 4.7-5.0
 function generateRandomRating() {
-  // 定义可能的评分值数组，使分布更均匀
+  // Define an array of possible rating values for a more even distribution
   const possibleRatings = [4.7, 4.8, 4.9, 4.9, 4.8, 4.7];
-  // 随机选择一个评分值
+  // Randomly select a rating value
   const randomIndex = Math.floor(Math.random() * possibleRatings.length);
   return possibleRatings[randomIndex];
 }
 
-// 中国著名景点数据
+// Famous Chinese attractions data
 const realVacations: VacationItemTypes[] = [
   {
     id: "a5518ffd-51e4-4c6e-898f-bc9b5d2418be",
@@ -117,7 +117,7 @@ const realVacations: VacationItemTypes[] = [
     title: "West Lake",
     price: 15,
     city: "Hangzhou",
-    rating: 5.0, // 固定评分5.0
+    rating: 5.0, // Fixed rating 5.0
     description: "Stroll around the enchanting West Lake, a freshwater lake surrounded by gardens, pagodas, and temples. Marco Polo described Hangzhou as 'the finest and most splendid city in the world' largely due to this UNESCO World Heritage site, which has inspired poets and artists for centuries.",
     sum_booking: 0,
     image: "images/west-lake.png",
@@ -149,7 +149,7 @@ const realVacations: VacationItemTypes[] = [
     title: "Forbidden City",
     price: 28,
     city: "Beijing",
-    rating: 5.0, // 固定评分5.0
+    rating: 5.0, // Fixed rating 5.0
     description: "Step into the magnificent imperial palace complex at the heart of Beijing, home to 24 Chinese emperors over 500 years. This UNESCO World Heritage site contains the largest collection of preserved ancient wooden structures in the world, with nearly 9,000 rooms filled with priceless artifacts and rich history. Explore the grand halls, intricate gardens, and learn about the fascinating stories of court intrigues and imperial ceremonies. The Forbidden City represents the pinnacle of traditional Chinese palatial architecture and provides visitors with an authentic glimpse into China's imperial past.",
     sum_booking: 0,
     image: "images/forbidden-city.png",
@@ -200,7 +200,7 @@ const realVacations: VacationItemTypes[] = [
     rating: generateRandomRating(),
     description: "Wander through the exquisite gardens, pavilions, and temples of this imperial retreat. The Summer Palace features the stunning Kunming Lake, the elegant Long Corridor, and beautiful traditional architecture, all set against the backdrop of Longevity Hill.",
     sum_booking: 0,
-    image: "images/summer-palace.png", // 使用真实的颐和园图片
+    image: "images/summer-palace.png", // Using real Summer Palace image
     location: {
       latitude: 39.9988,
       longitude: 116.2748
@@ -224,44 +224,44 @@ const realVacations: VacationItemTypes[] = [
   }
 ];
 
-// 初始化数据库函数
+// Initialize database function
 export async function initializeDatabase() {
   try {
     if (!db) {
-      console.warn("无法初始化数据库：浏览器环境不可用");
+      console.warn("Cannot initialize database: Browser environment unavailable");
       return;
     }
 
-    // 检查数据库是否已经有数据
+    // Check if the database already has data
     const itemCount = await db.items.count();
     
-    // 如果数据库为空，添加真实数据
+    // If the database is empty, add real data
     if (itemCount === 0) {
-      console.log("正在初始化数据库...");
+      console.log("Initializing database...");
       
-      // 添加所有数据
+      // Add all data
       for (const item of realVacations) {
         await db.items.add(item);
       }
       
-      console.log("数据库初始化完成");
+      console.log("Database initialization complete");
     } else {
-      console.log("数据库已经包含数据，跳过初始化");
+      console.log("Database already contains data, skipping initialization");
       
-      // 如果需要，可以添加代码来更新现有数据
-      console.log("更新数据库为中国景点...");
+      // If needed, you can add code to update existing data
+      console.log("Updating database with Chinese attractions...");
       
-      // 删除所有现有数据
+      // Delete all existing data
       await db.items.clear();
       
-      // 添加中国景点数据
+      // Add Chinese attractions data
       for (const item of realVacations) {
         await db.items.add(item);
       }
       
-      console.log("数据库更新完成");
+      console.log("Database update complete");
     }
   } catch (error) {
-    console.error("初始化数据库失败", error);
+    console.error("Failed to initialize database", error);
   }
 } 

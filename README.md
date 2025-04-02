@@ -19,7 +19,7 @@ China Travel is a modern tourism application that helps users explore travel des
 ### System Requirements
 
 - Node.js 18.x or higher
-- npm or yarn package manager
+- npm package manager
 
 ### Installation Steps
 
@@ -34,24 +34,18 @@ cd chinatravel
 
 ```bash
 npm install
-# or using yarn
-yarn install
 ```
 
 3. Generate PWA icons (optional)
 
 ```bash
 npm run generate-icons
-# or using yarn
-yarn generate-icons
 ```
 
 4. Download map icons (optional)
 
 ```bash
 npm run download-map-icons
-# or using yarn
-yarn download-map-icons
 ```
 
 ### Environment Configuration
@@ -68,8 +62,6 @@ NEXT_PUBLIC_AMAP_KEY=your_amap_api_key
 
 ```bash
 npm run dev
-# or using yarn
-yarn dev
 ```
 
 The application will be accessible at [http://localhost:3000](http://localhost:3000).
@@ -80,16 +72,12 @@ Build the application:
 
 ```bash
 npm run build
-# or using yarn
-yarn build
 ```
 
 Start the production server:
 
 ```bash
 npm start
-# or using yarn
-yarn start
 ```
 
 ### Usage

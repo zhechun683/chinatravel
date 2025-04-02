@@ -1,35 +1,35 @@
-# 依赖目录
+# Dependency directories
 /node_modules
 /.pnp
 .pnp.js
 
-# 测试覆盖率
+# Test coverage
 /coverage
 
-# Next.js构建输出
+# Next.js build outputs
 /.next/
 /out/
 
-# 生产环境构建
+# Production build
 /build
 
-# 其他
+# Misc
 .DS_Store
 *.pem
 
-# 调试
+# Debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# 本地环境文件
+# Local env files
 .env*.local
 .env
 
 # vercel
 .vercel
 
-# PWA文件
+# PWA files
 **/public/workbox-*.js
 **/public/sw.js
 **/public/sw.js.map
@@ -39,7 +39,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# IDE配置
+# IDE config
 .idea
 .vscode
 *.suo
@@ -48,11 +48,14 @@ next-env.d.ts
 *.sln
 *.sw?
 
-# 临时文件
+# Temp files
 .temp
 .tmp
 .cache
 
-# 日志文件
+# Log files
 logs
 *.log
+
+# Assignment files
+Part A.pdf

@@ -6,7 +6,7 @@ import { Button } from "@/components/atoms/button";
 import { Logo } from "@/components/atoms/logo";
 
 export const metadata: Metadata = {
-  title: "离线 | ChinaTravel",
+  title: "Offline | ChinaTravel",
 };
 
 export default function OfflinePage() {
@@ -15,15 +15,15 @@ export default function OfflinePage() {
       <div className="mb-8">
         <Logo isDisplayMobile />
       </div>
-      <h1 className="mb-4 text-3xl font-bold">您当前处于离线状态</h1>
+      <h1 className="mb-4 text-3xl font-bold">You are currently offline</h1>
       <p className="mb-8 max-w-md text-gray-600">
-        看起来您的网络连接中断了。请检查您的网络连接，然后再试一次。
-        部分功能在离线模式下可能仍然可用。
+        It looks like your network connection is interrupted. Please check your network connection and try again.
+        Some features may still be available in offline mode.
       </p>
       <Button asChild>
         <Link href="/" className="flex items-center gap-2">
           <ArrowLeft size={18} />
-          返回首页
+          Back to Home
         </Link>
       </Button>
     </div>
