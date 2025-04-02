@@ -11,7 +11,7 @@ export function Rating() {
         满意的顾客
       </p>
       <h3 className="mt-2 text-center text-3xl font-semibold text-[#232631]">
-        我们真的很喜欢 Goout
+        我们真的很喜欢 China Travel
       </h3>
       <div className="mt-[4.38rem] flex flex-wrap items-center justify-center gap-x-[3.13rem] gap-y-10">
         <div className="flex h-[18.375rem] w-[17.9375rem] flex-col rounded-[0.875rem] bg-white p-5">
