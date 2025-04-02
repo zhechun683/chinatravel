@@ -220,6 +220,21 @@ China Travel has been fully optimized for mobile devices:
 
 The project code is publicly hosted on GitHub: https://github.com/zhechun683/chinatravel
 
+### Application Screenshots
+
+Below are screenshots showing the China Travel application on different devices:
+
+<div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+  <div style="flex: 1; margin-right: 10px;">
+    <img src="LapTop.png" alt="Desktop View of China Travel" style="width: 100%;">
+    <p style="text-align: center;"><em>Figure 3: Desktop Experience</em></p>
+  </div>
+  <div style="flex: 1; margin-left: 10px;">
+    <img src="Phone.png" alt="Mobile View of China Travel" style="width: 50%; display: block; margin: 0 auto;">
+    <p style="text-align: center;"><em>Figure 4: Mobile Experience</em></p>
+  </div>
+</div>
+
 ## 5. Conclusion, Recommendations, and Reflection
 
 ### Learning Outcomes
@@ -285,7 +300,3 @@ Directions for improvement in future similar projects:
 In summary, PWA technology provides a strong technical foundation for the China Travel project, achieving the goals of cross-platform compatibility, offline access, and native-like experience. Despite some limitations, PWA technology's advantages clearly outweigh its disadvantages, offering a promising development path for travel applications.
 
 In the future, as web standards evolve and browser support strengthens, PWA technology will further narrow the gap with native applications while maintaining its unique cross-platform and easy distribution advantages.
-
----
-
-Report Date: April 2, 2024 
