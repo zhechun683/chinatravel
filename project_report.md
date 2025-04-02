@@ -202,14 +202,6 @@ npm run build
 npm start
 ```
 
-### Environment Configuration
-
-The project uses environment variables for configuration. Create a `.env.local` file in the project root directory:
-
-```
-NEXT_PUBLIC_AMAP_KEY=your_amap_api_key
-```
-
 ### Mobile Usage
 
 China Travel has been fully optimized for mobile devices:

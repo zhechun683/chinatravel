@@ -44,26 +44,6 @@ cd chinatravel
 npm install
 ```
 
-3. Generate PWA icons (optional)
-
-```bash
-npm run generate-icons
-```
-
-4. Download map icons (optional)
-
-```bash
-npm run download-map-icons
-```
-
-### Environment Configuration
-
-The project supports configuration through environment variables. Create a `.env.local` file in the project root directory with the following variables:
-
-```
-NEXT_PUBLIC_AMAP_KEY=your_amap_api_key
-```
-
 ### Running the Project
 
 #### Development Mode
