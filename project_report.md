@@ -51,28 +51,20 @@ PWA technology has had the following positive impacts on the project:
 
 ### Overall System Architecture
 
-China Travel is built using a modern frontend technology stack, with the following architecture:
+China Travel is built using a modern frontend technology stack, with the architecture and functional modules shown in the diagrams below:
 
-```
-Frontend Application (Next.js PWA)
-  ├── User Interface Layer (React components)
-  │   ├── Atomic components (Button, Input, etc.)
-  │   ├── Molecular components (DestinationCard, BookingForm, etc.)
-  │   └── Page components (Home, Detail, etc.)
-  │
-  ├── State Management and Logic Layer
-  │   ├── Context API
-  │   ├── React Hooks
-  │   └── Service functions
-  │
-  ├── Data Persistence Layer
-  │   └── IndexedDB (Dexie.js)
-  │
-  └── PWA Infrastructure
-      ├── Service Worker
-      ├── Web App Manifest
-      └── Offline page
-```
+<div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+  <div style="flex: 1; margin-right: 10px;">
+    <img src="ArchitectureDiagramStructure.png" alt="China Travel System Architecture" style="width: 100%;">
+    <p style="text-align: center;"><em>Figure 1: System Architecture Diagram</em></p>
+  </div>
+  <div style="flex: 1; margin-left: 10px;">
+    <img src="ModuleDiagram.png" alt="China Travel Functional Modules" style="width: 100%;">
+    <p style="text-align: center;"><em>Figure 2: Functional Module Diagram</em></p>
+  </div>
+</div>
+
+The architecture follows a layered approach with clear separation of concerns between the UI, business logic, and data persistence layers, all supported by the PWA infrastructure. The functional modules are designed to provide a comprehensive travel exploration and booking experience.
 
 ### Functional Module Description
 
