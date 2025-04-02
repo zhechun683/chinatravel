@@ -6,13 +6,15 @@ A Progressive Web App (PWA) for exploring tourist destinations in China, built w
 
 China Travel is a modern tourism application that helps users explore travel destinations across China. The app offers a variety of features including destination browsing, attraction details, hotel bookings, and activity recommendations.
 
-## Demo Videos
+## Demo Screenshots
 
 ### Desktop Experience
-[View Desktop Demo Video](./DemoLapTop.mp4)
+![Desktop Demo Screenshot](./LapTop.png)
+*Demo video file location: DemoLapTop.mp4 in project root directory*
 
 ### Mobile Experience
-[View Mobile Demo Video](./DemoPhone.mp4)
+![Mobile Demo Screenshot](./Phone.png)
+*Demo video file location: DemoPhone.mp4 in project root directory*
 
 ## Features
 
