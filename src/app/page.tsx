@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 
-import { Hero } from "@/components/organisms/home/hero";
 import { TripPackage } from "@/components/organisms/home/package";
 import { Callout } from "@/components/organisms/home/callout";
 import { Destinations } from "@/components/organisms/home/destinations";
@@ -16,7 +15,6 @@ export default function HomePage() {
     <>
       <Navbar />
       <main>
-        <Hero />
         <TripPackage />
         <Destinations />
         <Callout />

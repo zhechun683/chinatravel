@@ -43,19 +43,28 @@ export function TripPackage() {
       : "/vacation/afa0a61e-cafd-4aae-92d6-65071cb9abdf"; // 在无项目时提供默认ID
 
   return (
-    <section className="container mt-[8.25rem] flex justify-center">
+    <section className="container mt-[4rem]">
+      <div className="mb-[2.5rem]">
+        <span className="text-2xl font-bold text-secondary">
+          Our Recommendations
+        </span>
+        <h2 className="mt-2 text-4xl font-bold text-[#232631] lg:text-5xl">
+          Popular Tourist Attractions
+        </h2>
+      </div>
+      
       <div className="flex flex-wrap items-center gap-x-[3.75rem] gap-y-10">
         <div className="order-2 w-full md:max-w-max">
-          <span className="text-base font-semibold text-secondary">
-            Our Package
-          </span>
-          <h2 className="mt-1 text-2xl font-semibold text-[#232631] lg:text-4xl">
-            Popular Trip Packages
-          </h2>
-          <p className="mt-3 max-w-[25.5625rem] text-base font-normal leading-[1.875rem] text-[#7B7B7B]">
+          <p className="mb-4 text-xl font-bold leading-[2rem] text-[#000000]">
             Discover the joy of traveling in China.<br />
             Tap below to find out more!
           </p>
+          
+          <p className="mb-3 text-base font-normal text-[#7B7B7B]">
+            The recommended attractions this time are:<br />
+            Forbidden City in Beijing &amp; West Lake in Hangzhou
+          </p>
+          
           <ul className="mt-[1.875rem] flex flex-col gap-[1.625rem] md:flex-row">
             <li>
               <span className="text-xl font-semibold text-[#232631]">20+</span>

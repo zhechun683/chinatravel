@@ -5,12 +5,11 @@ export type StepItem = {
 };
 
 export type Steps = {
-  bookingInformation: StepItem;
-  payment: StepItem;
+  bookingAndPayment: StepItem;
   completed: StepItem;
 };
 
-export type KeyofStep = "bookingInformation" | "payment" | "completed";
+export type KeyofStep = "bookingAndPayment" | "completed";
 
 export type FormData = {
   firstName: string;

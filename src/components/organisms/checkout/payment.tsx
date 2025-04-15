@@ -29,9 +29,9 @@ export function Payment({
 
   return (
     <section className="container">
-      <div className="flex flex-wrap justify-center gap-x-20 lg:justify-start xl:pl-44">
-        <div className="mt-10 h-[402px] w-full max-w-[350px] rounded bg-white px-3.5 py-5 pb-10 shadow-md">
-          <figure className="relative h-[150px] w-full overflow-hidden rounded-2xl md:w-[323px]">
+      <div className="flex flex-wrap justify-center gap-x-20 lg:justify-start xl:pl-[116px]">
+        <div className="mt-10 w-full max-w-[420px] lg:mt-20">
+          <figure className="relative h-[135px] w-full overflow-hidden rounded-2xl md:w-[420px]">
             {itemDetails?.image ? (
               <Image
                 src={itemDetails.image.startsWith('/') ? itemDetails.image : `/${itemDetails.image}`}
@@ -39,16 +39,22 @@ export function Payment({
                 fill
                 quality={90}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                style={{ objectFit: "cover" }}
+                style={{ 
+                  objectFit: "cover",
+                  objectPosition: "center 35%" 
+                }}
               />
             ) : (
               <Image
-                src="/images/1.png"
+                src="/images/forbidden-city.png"
                 alt="Travel Package"
                 fill
                 quality={90}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                style={{ objectFit: "cover" }}
+                style={{ 
+                  objectFit: "cover",
+                  objectPosition: "center 35%" 
+                }}
               />
             )}
           </figure>

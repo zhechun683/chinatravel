@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { MapPin, Navigation, Globe, Maximize, Minimize } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import { VacationItemTypes } from '@/services/types';
+import { BookingForm } from '@/components/organisms/details/booking-form';
 
 // 动态导入地图组件（客户端渲染）
 const LocationMap = dynamic(() => import('@/components/molecules/LocationMap'), {
@@ -102,61 +103,69 @@ export function LocationView({ item }: LocationViewProps) {
 
   return (
     <section className="container mt-10">
-      <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-semibold text-[#232631]">Location</h2>
-        <button 
-          onClick={() => setIsMapExpanded(!isMapExpanded)}
-          className="flex items-center gap-x-1 text-secondary hover:underline"
-        >
-          {isMapExpanded ? 
-            <><Minimize size={18} /> Hide Map</> : 
-            <><Maximize size={18} /> Expand Map</>
-          }
-        </button>
-      </div>
-      
-      <div className="mt-4 flex flex-col gap-y-3">
-        <div className="flex items-center gap-x-2">
-          <MapPin size={20} className="flex-shrink-0 text-secondary" />
-          <span className="text-lg text-[#7B7B7B]">{fullAddress}</span>
+      <div className="flex flex-col md:flex-row md:gap-8">
+        <div className="flex-1">
+          <div className="flex items-center justify-between">
+            <h2 className="text-2xl font-semibold text-[#232631]">Location</h2>
+            <button 
+              onClick={() => setIsMapExpanded(!isMapExpanded)}
+              className="flex items-center gap-x-1 text-secondary hover:underline"
+            >
+              {isMapExpanded ? 
+                <><Minimize size={18} /> Hide Map</> : 
+                <><Maximize size={18} /> Expand Map</>
+              }
+            </button>
+          </div>
+          
+          <div className="mt-4 flex flex-col gap-y-3">
+            <div className="flex items-center gap-x-2">
+              <MapPin size={20} className="flex-shrink-0 text-secondary" />
+              <span className="text-lg text-[#7B7B7B]">{fullAddress}</span>
+            </div>
+            
+            <div className="flex items-center gap-x-4">
+              <a 
+                href={googleMapsLink} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center gap-x-1 text-secondary hover:underline"
+              >
+                <Globe size={16} />
+                <span>View in Google Maps</span>
+              </a>
+              
+              <a 
+                href={`https://maps.apple.com/?q=${location.latitude},${location.longitude}`} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center gap-x-1 text-secondary hover:underline"
+              >
+                <Navigation size={16} />
+                <span>Get Navigation</span>
+              </a>
+            </div>
+          </div>
+          
+          <div className={`mt-4 transition-all duration-500 ${isMapExpanded ? 'h-[500px]' : 'h-[300px]'}`}>
+            <LocationMap 
+              location={location}
+              title={item.title}
+              description={fullAddress}
+              height="100%"
+              zoom={isMapExpanded ? 14 : 12}
+            />
+          </div>
+          
+          <p className="mt-3 text-sm text-gray-500">
+            Tip: Click on a marker on the map to view detailed information. Double-click or use the scroll wheel to zoom the map.
+          </p>
         </div>
         
-        <div className="flex items-center gap-x-4">
-          <a 
-            href={googleMapsLink} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="flex items-center gap-x-1 text-secondary hover:underline"
-          >
-            <Globe size={16} />
-            <span>View in Google Maps</span>
-          </a>
-          
-          <a 
-            href={`https://maps.apple.com/?q=${location.latitude},${location.longitude}`} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="flex items-center gap-x-1 text-secondary hover:underline"
-          >
-            <Navigation size={16} />
-            <span>Get Navigation</span>
-          </a>
+        <div className="mt-8 md:mt-0 md:w-[350px]">
+          <BookingForm item={item} />
         </div>
       </div>
-      
-      <div className={`mt-4 transition-all duration-500 ${isMapExpanded ? 'h-[500px]' : 'h-[300px]'}`}>
-        <LocationMap 
-          location={location}
-          title={item.title}
-          description={fullAddress}
-          height="100%"
-          zoom={isMapExpanded ? 14 : 12}
-        />
-      </div>
-      
-      <p className="mt-3 text-sm text-gray-500">
-        Tip: Click on a marker on the map to view detailed information. Double-click or use the scroll wheel to zoom the map.
-      </p>
     </section>
   );
 } 

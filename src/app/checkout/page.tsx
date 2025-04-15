@@ -8,7 +8,6 @@ import {
   Controller,
   MainContent,
   Meta,
-  Numbering,
 } from "@/components/molecules/stepper";
 import { BookingInformation } from "@/components/organisms/checkout/booking-information";
 import { Completed } from "@/components/organisms/checkout/completed";
@@ -119,29 +118,27 @@ export default function CheckoutPage() {
   }
 
   const steps = {
-    bookingInformation: {
-      title: "Booking Information",
-      description: "Please fill in the form below",
+    bookingAndPayment: {
+      title: "Booking and Payment Information",
+      description: "Please fill in all details below to complete your booking",
       content: (
-        <BookingInformation
-          data={data}
-          itemDetails={item}
-          checkout={checkout}
-          onChange={onChange}
-          isLoading={isLoading}
-        />
-      ),
-    },
-    payment: {
-      title: "Payment",
-      description: "Please follow the instructions below",
-      content: (
-        <Payment
-          data={data}
-          itemDetails={item}
-          checkout={checkout}
-          onChange={onChange}
-        />
+        <div className="flex flex-col gap-10">
+          <BookingInformation
+            data={data}
+            itemDetails={item}
+            checkout={checkout}
+            onChange={onChange}
+            isLoading={isLoading}
+          />
+          <div className="mt-8">
+            <Payment
+              data={data}
+              itemDetails={item}
+              checkout={checkout}
+              onChange={onChange}
+            />
+          </div>
+        </div>
       ),
     },
     completed: {
@@ -160,48 +157,27 @@ export default function CheckoutPage() {
         steps: Steps,
       ) => (
         <>
-          <Numbering
-            data={steps}
-            current={CurrentStep}
-            className="mt-[4.375rem]"
-          />
           <Meta data={steps} current={CurrentStep} />
           <MainContent data={steps} current={CurrentStep} />
 
-          {CurrentStep === "bookingInformation" && (
+          {CurrentStep === "bookingAndPayment" && (
             <Controller>
               {data.firstName !== "" &&
                 data.lastName !== "" &&
                 data.email !== "" &&
-                data.phone !== "" && (
-                  <Button className="w-[300px] text-base font-medium bg-secondary text-white hover:bg-secondary/90" onClick={nextStep}>
-                    Continue to Book
-                  </Button>
-                )}
-              <Button asChild variant="ghost" className="w-[300px] text-base">
-                <Link href={`/vacation/${checkout.id}`}>Cancel</Link>
-              </Button>
-            </Controller>
-          )}
-
-          {CurrentStep === "payment" && (
-            <Controller>
-              {data.cardNumber !== "" &&
+                data.phone !== "" &&
+                data.cardNumber !== "" &&
                 data.cardName !== "" &&
                 data.cvc !== "" && (
                   <Button
                     className="w-[300px] text-base font-medium bg-secondary text-white hover:bg-secondary/90"
                     onClick={() => submitHandler(nextStep)}
                   >
-                    Confirm Payment
+                    Confirm and Pay
                   </Button>
                 )}
-              <Button
-                variant="ghost"
-                className="w-[300px] text-base"
-                onClick={prevStep}
-              >
-                Cancel
+              <Button asChild variant="ghost" className="w-[300px] text-base">
+                <Link href={`/vacation/${checkout.id}`}>Cancel</Link>
               </Button>
             </Controller>
           )}

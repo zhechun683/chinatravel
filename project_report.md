@@ -28,7 +28,9 @@ China Travel is a China tourism destination exploration application developed wi
 - Offline access to basic content
 - Providing native app-like user experience
 
-### Technology Connection with the Project
+### Technology Stack Justification
+
+#### PWA as Core Technology
 
 This project chose PWA as its core technology feature based on the following considerations:
 
@@ -37,6 +39,20 @@ This project chose PWA as its core technology feature based on the following con
 2. **Offline Functionality Requirement**: In travel application scenarios, users may use the app in environments with unstable networks. PWA's offline capability ensures users can still access basic content without an internet connection.
 
 3. **Cross-Platform Compatibility**: PWA can run in any modern browser, without platform limitations, allowing the application to reach a broader user base.
+
+#### Choice of Next.js Framework
+
+While the course module does not specifically cover Next.js, this framework was selected for the following pragmatic reasons:
+
+1. **PWA Implementation Simplicity**: Next.js offers streamlined PWA integration through the next-pwa plugin, significantly reducing the complexity of Service Worker configuration and management.
+
+2. **Performance Optimization**: The framework's built-in image optimization, code splitting, and server-side rendering capabilities directly enhance PWA performance metrics, particularly on mobile devices.
+
+3. **Development Efficiency**: Next.js's file-based routing system and integrated API routes enabled faster development of the application's core features, allowing more focus on implementing the required PWA and device API functionality.
+
+4. **Production Readiness**: The framework provides production-optimized builds with minimal configuration, ensuring the application can be easily deployed and maintained.
+
+It's important to note that while Next.js was used as the development framework, the core educational focus remains on implementing and understanding PWA technology and device API integration, which are framework-agnostic concepts.
 
 ### Positive Impact of the Technology
 
@@ -51,7 +67,7 @@ PWA technology has had the following positive impacts on the project:
 
 ### Overall System Architecture
 
-China Travel is built using a modern frontend technology stack, with the architecture and functional modules shown in the diagrams below:
+China Travel is built using a modern frontend technology stack, with the architecture based on the PWA (Progressive Web App) principles. The system follows a component-based architecture with clear separation of concerns between the UI, business logic, and data persistence layers.
 
 <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
   <div style="flex: 1; margin-right: 10px;">
@@ -64,7 +80,13 @@ China Travel is built using a modern frontend technology stack, with the archite
   </div>
 </div>
 
-The architecture follows a layered approach with clear separation of concerns between the UI, business logic, and data persistence layers, all supported by the PWA infrastructure. The functional modules are designed to provide a comprehensive travel exploration and booking experience.
+The project implements the **Atomic Design** methodology for its component structure. This is a systematic methodology that breaks down interfaces into fundamental building blocks and then combines them to form more complex components:
+
+- **Atoms**: The smallest building blocks of the interface (buttons, inputs, icons, etc.)
+- **Molecules**: Groups of atoms functioning together as a unit (form controls, cards, etc.)
+- **Organisms**: Complex UI components composed of groups of molecules and atoms (navigation bars, content sections, etc.)
+
+This approach facilitates component reusability, maintains consistency across the application, and improves development efficiency. The component organization directly reflects this hierarchy in the project folder structure.
 
 ### Functional Module Description
 
@@ -77,18 +99,80 @@ The project's main functional modules include:
 
 #### 2. Attraction Detail Module
 - Displays detailed descriptions, images, and prices of attractions
-- Integrates maps to show attraction locations
+- Integrates maps to show attraction locations with geolocation data
 - Provides booking functionality entry points
 
 #### 3. Account Management Module
 - User personal information management
 - Booking history viewing
 - Payment method management
+- Camera API integration for user avatar photos
 
 #### 4. PWA Core Module
 - Service Worker configuration
 - Web App Manifest settings
 - Offline page and error handling
+- Device API integration
+
+### Hardware/Device API Integration
+
+The application utilizes several device APIs to enhance the user experience:
+
+#### 1. Geolocation API
+The attraction detail pages leverage the browser's Geolocation API to:
+- Display the current location of the user in relation to attractions
+- Calculate distances between the user and points of interest
+- Provide directions from the user's current location to attractions
+
+```javascript
+// Example of Geolocation API usage
+const getUserLocation = () => {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const userCoordinates = {
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude
+        };
+        setUserLocation(userCoordinates);
+      },
+      (error) => {
+        console.error('Error getting user location:', error);
+      }
+    );
+  }
+};
+```
+
+#### 2. Camera API
+The application integrates with the device camera through the MediaDevices API:
+- Users can take profile pictures directly within the app
+- The camera interface is built into the account management page
+- Images can be captured and stored as user avatars
+
+```javascript
+// Camera API integration example
+const startCamera = async () => {
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+    if (videoRef.current) {
+      videoRef.current.srcObject = stream;
+      setCameraActive(true);
+    }
+  } catch (error) {
+    console.error('Failed to access camera:', error);
+    alert('Cannot access camera, please check permission settings');
+  }
+};
+```
+
+#### 3. Device Storage API
+The application uses IndexedDB and localStorage APIs for:
+- Storing user data for offline access
+- Caching attraction information and images
+- Persisting user preferences and settings
+
+These hardware/device API integrations are essential components of the PWA functionality, enabling rich, native-like experiences while running in a browser environment.
 
 ### Technical Implementation Details
 

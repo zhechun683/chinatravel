@@ -41,7 +41,7 @@ export function BookingInformation({
               />
             ) : (
               <Image
-                src="/images/1.png"
+                src="/images/forbidden-city.png"
                 alt="Travel Package"
                 fill
                 quality={90}
