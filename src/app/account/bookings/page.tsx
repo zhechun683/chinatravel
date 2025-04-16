@@ -75,7 +75,7 @@ export default function MyBookingsPage() {
                 <div className="relative h-48 w-full">
                   {booking.itemDetails?.image ? (
                     <Image
-                      src={`${booking.itemDetails.image}`}
+                      src={booking.itemDetails.image.startsWith('/') ? booking.itemDetails.image : `/${booking.itemDetails.image}`}
                       alt={booking.itemDetails?.title || 'Travel Image'}
                       fill
                       style={{ objectFit: 'cover' }}

@@ -116,6 +116,23 @@ If you encounter issues:
 3. Test PWA features in production build (disabled in development mode)
 4. Check the browser console for error messages
 
+## Project References and Original Contributions
+
+### References
+
+This project's UI structure and design foundations reference the open-source project [Goout](https://github.com/akmalseptiyana/goout.git), while making substantial modifications to adapt to the China travel theme and adding significant original functionalities.
+
+### Original Contributions
+
+- **Progressive Web App (PWA) Implementation**: Full offline capability, service worker configuration, and app installation flow
+- **Account Management System**: Complete user account functionality with profile management and booking history
+- **Device API Integration**: Geolocation services for attractions and camera integration for user avatars
+- **Offline Data Storage**: Client-side data persistence using IndexedDB for offline access to bookings and attraction data
+- **Interactive Navigation Elements**: Custom implementation of application navigation and interactive elements
+- **China Tourism Content**: All China-specific content, descriptions, and localized design elements
+
+For a comprehensive description of references and original contributions, please see the full project report.
+
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.

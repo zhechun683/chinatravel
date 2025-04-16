@@ -384,3 +384,78 @@ Directions for improvement in future similar projects:
 In summary, PWA technology provides a strong technical foundation for the China Travel project, achieving the goals of cross-platform compatibility, offline access, and native-like experience. Despite some limitations, PWA technology's advantages clearly outweigh its disadvantages, offering a promising development path for travel applications.
 
 In the future, as web standards evolve and browser support strengthens, PWA technology will further narrow the gap with native applications while maintaining its unique cross-platform and easy distribution advantages.
+
+## 6. Academic Integrity and Reference Declaration
+
+### Project References and Originality Statement
+
+This China Travel project has referenced the following resources, which are hereby explicitly acknowledged:
+
+1. **Basic Framework and Structure Reference**
+   - The basic UI structure and component design of this project referenced the open-source project "Goout" (https://github.com/akmalseptiyana/goout.git)
+   - Referenced content includes: basic page layout, component structure design, and UI organization
+   - All referenced code has been substantially modified to adapt to the specific requirements and theme of this project
+
+2. **UI Component Library Usage**
+   - The project uses the open-source UI component library Radix UI (https://www.radix-ui.com/)
+   - Components used include dialogs, dropdown menus, tabs, and switches among other basic UI elements
+   - All components have been customized with styles to meet the project design requirements
+
+### Original Contribution Statement
+
+The following features and implementations are original contributions of this project:
+
+1. **PWA Feature Extension and Implementation**
+   - Offline functionality and Service Worker configuration are completely original implementations
+   - PWA installation process and offline page are original designs and developments
+   - All related Service Worker caching strategies are original designs
+
+2. **Account Management System**
+   - The complete implementation of the account module, including UI design and functional logic, is original
+   - User information management and booking history features are original developments
+   - Related data models and processing logic are original designs
+
+3. **Device API Integration**
+   - Geolocation API integration and implementation are original developments
+   - Camera API integration and user avatar functionality are original implementations
+   - These features do not exist in the referenced project and were developed entirely by this project's developer
+
+4. **Offline Data Storage Solution**
+   - Client-side data persistence solution using IndexedDB and Dexie.js is an original design
+   - Data model design and synchronization strategy are original implementations
+   - The complete architecture for offline data access is an original contribution
+
+5. **China Tourism Theme Content**
+   - All content related to Chinese tourism, attraction descriptions, and image selection are original
+   - Localized design elements and interface adjustments are original contributions
+
+6. **Navigation and Interactive Elements Implementation**
+   - Custom implementation of interactive buttons and page navigation (such as "Book Now", "View More" buttons on the homepage)
+   - Enhanced user flow and navigation paths between different application sections
+   - Implementation of interactive elements with optimized mobile touch interactions
+   - Custom animation and transition effects for improved user experience
+
+### Technical Dependencies and Third-Party Libraries Declaration
+
+This project uses the following open-source dependencies, which are hereby explicitly acknowledged:
+
+1. **Framework and Core Libraries**
+   - Next.js (https://nextjs.org/): React framework
+   - React (https://reactjs.org/): UI library
+   - TypeScript (https://www.typescriptlang.org/): Type checking tool
+
+2. **UI and Styling**
+   - Tailwind CSS (https://tailwindcss.com/): Utility-first CSS framework
+   - Lucide React (https://lucide.dev/): Icon library
+   - class-variance-authority & clsx: CSS class name handling tools
+
+3. **Functional Extension Libraries**
+   - next-pwa (https://github.com/shadowwalker/next-pwa): PWA support plugin
+   - dexie.js (https://dexie.org/): IndexedDB wrapper library
+   - leaflet & react-leaflet (https://leafletjs.com/): Interactive map library
+
+4. **Development Tools**
+   - ESLint & Prettier: Code quality and formatting tools
+   - Sharp: Image processing library
+
+All third-party libraries used are properly imported through the npm package manager and explicitly listed in package.json. The project complies with all relevant open-source license requirements.
