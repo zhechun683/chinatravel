@@ -122,10 +122,11 @@ The application utilizes several device APIs to enhance the user experience:
 The attraction detail pages leverage the browser's Geolocation API to:
 - Display the current location of the user in relation to attractions
 - Calculate distances between the user and points of interest
-- Provide directions from the user's current location to attractions
+- Show both attractions and user location on an interactive map
+- Provide navigation options via external map services
 
 ```javascript
-// Example of Geolocation API usage
+// Geolocation API integration example
 const getUserLocation = () => {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
@@ -135,13 +136,25 @@ const getUserLocation = () => {
           longitude: position.coords.longitude
         };
         setUserLocation(userCoordinates);
+        localStorage.setItem('userLocationLat', userCoordinates.latitude.toString());
       },
       (error) => {
-        console.error('Error getting user location:', error);
-      }
+        console.error('Error getting location:', error);
+        setUserLocationError('Unable to access your location');
+      },
+      { enableHighAccuracy: true, timeout: 10000 }
     );
   }
 };
+```
+
+The application uses Leaflet with OpenStreetMap instead of Google Maps API, providing features like user location toggling, visual connection between points, and automatic map scaling. Map components are dynamically imported to prevent server-side rendering issues:
+
+```javascript
+const LocationMap = dynamic(() => import('@/components/molecules/LocationMap'), {
+  ssr: false,
+  loading: () => (/* Loading state UI */)
+});
 ```
 
 #### 2. Camera API
@@ -416,7 +429,10 @@ The following features and implementations are original contributions of this pr
    - Related data models and processing logic are original designs
 
 3. **Device API Integration**
-   - Geolocation API integration and implementation are original developments
+   - Geolocation API integration with customized user location control (show/hide functionality) is original development
+   - Interactive map implementation using Leaflet and OpenStreetMap with location visualization features
+   - Visual connection between user location and attractions with automatic map view adjustment
+   - Persistent location storage for improved user experience across sessions
    - Camera API integration and user avatar functionality are original implementations
    - These features do not exist in the referenced project and were developed entirely by this project's developer
 

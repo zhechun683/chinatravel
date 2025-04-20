@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { MapPin, Navigation, Globe, Maximize, Minimize } from 'lucide-react';
+import { MapPin, Navigation, Globe, Maximize, Minimize, Target, X } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import { VacationItemTypes } from '@/services/types';
 import { BookingForm } from '@/components/organisms/details/booking-form';
@@ -74,6 +74,9 @@ function getLocationFromCityCountry(city: string, country: string): { latitude: 
 export function LocationView({ item }: LocationViewProps) {
   const [isMapExpanded, setIsMapExpanded] = useState(false);
   const [location, setLocation] = useState<{ latitude: number; longitude: number } | null>(item.location || null);
+  const [userLocation, setUserLocation] = useState<{ latitude: number; longitude: number } | null>(null);
+  const [isLoadingUserLocation, setIsLoadingUserLocation] = useState(false);
+  const [userLocationError, setUserLocationError] = useState<string | null>(null);
   
   // 如果没有位置信息，尝试从城市和国家获取
   useEffect(() => {
@@ -85,6 +88,96 @@ export function LocationView({ item }: LocationViewProps) {
       }
     }
   }, [location, item.city, item.country]);
+
+  // 获取用户地理位置
+  const getUserLocation = () => {
+    // 重置状态
+    setIsLoadingUserLocation(true);
+    setUserLocationError(null);
+    
+    // 检查浏览器是否支持地理位置API
+    if (!navigator.geolocation) {
+      setUserLocationError('您的浏览器不支持地理位置功能');
+      setIsLoadingUserLocation(false);
+      return;
+    }
+    
+    // 请求获取位置
+    navigator.geolocation.getCurrentPosition(
+      // 成功回调
+      (position) => {
+        const newUserLocation = {
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude
+        };
+        setUserLocation(newUserLocation);
+        setIsLoadingUserLocation(false);
+        
+        // 将位置保存到localStorage以便后续使用
+        try {
+          localStorage.setItem('userLocationLat', newUserLocation.latitude.toString());
+          localStorage.setItem('userLocationLng', newUserLocation.longitude.toString());
+        } catch (e) {
+          console.warn('无法将位置保存到localStorage', e);
+        }
+      },
+      // 错误回调
+      (error) => {
+        console.error('获取位置错误:', error);
+        let errorMessage = '无法获取您的位置';
+        
+        switch (error.code) {
+          case error.PERMISSION_DENIED:
+            errorMessage = '您拒绝了位置访问权限';
+            break;
+          case error.POSITION_UNAVAILABLE:
+            errorMessage = '位置信息不可用';
+            break;
+          case error.TIMEOUT:
+            errorMessage = '获取位置请求超时';
+            break;
+        }
+        
+        setUserLocationError(errorMessage);
+        setIsLoadingUserLocation(false);
+      },
+      // 选项
+      {
+        enableHighAccuracy: true, // 高精度
+        timeout: 10000,          // 10秒超时
+        maximumAge: 5 * 60 * 1000 // 5分钟内的缓存有效
+      }
+    );
+  };
+  
+  // 尝试从localStorage恢复用户位置
+  useEffect(() => {
+    try {
+      const savedLat = localStorage.getItem('userLocationLat');
+      const savedLng = localStorage.getItem('userLocationLng');
+      
+      if (savedLat && savedLng) {
+        setUserLocation({
+          latitude: parseFloat(savedLat),
+          longitude: parseFloat(savedLng)
+        });
+      }
+    } catch (e) {
+      console.warn('无法从localStorage恢复位置', e);
+    }
+  }, []);
+
+  // 重置用户位置，返回到只显示景点的视图
+  const resetUserLocation = () => {
+    setUserLocation(null);
+    // 可选：清除localStorage中的位置信息
+    try {
+      localStorage.removeItem('userLocationLat');
+      localStorage.removeItem('userLocationLng');
+    } catch (e) {
+      console.warn('无法从localStorage删除位置数据', e);
+    }
+  };
 
   // 如果仍然没有位置信息，显示占位符
   if (!location) {
@@ -107,15 +200,38 @@ export function LocationView({ item }: LocationViewProps) {
         <div className="flex-1">
           <div className="flex items-center justify-between">
             <h2 className="text-2xl font-semibold text-[#232631]">Location</h2>
-            <button 
-              onClick={() => setIsMapExpanded(!isMapExpanded)}
-              className="flex items-center gap-x-1 text-secondary hover:underline"
-            >
-              {isMapExpanded ? 
-                <><Minimize size={18} /> Hide Map</> : 
-                <><Maximize size={18} /> Expand Map</>
-              }
-            </button>
+            <div className="flex items-center gap-x-4">
+              {userLocation ? (
+                <button 
+                  onClick={resetUserLocation}
+                  className="flex items-center gap-x-1 text-red-500 hover:underline"
+                  title="隐藏我的位置"
+                >
+                  <X size={18} />
+                  <span>隐藏我的位置</span>
+                </button>
+              ) : (
+                <button 
+                  onClick={getUserLocation}
+                  disabled={isLoadingUserLocation}
+                  className="flex items-center gap-x-1 text-secondary hover:underline disabled:opacity-50"
+                  title="显示我的位置"
+                >
+                  <Target size={18} />
+                  {isLoadingUserLocation ? '获取位置中...' : '显示我的位置'}
+                </button>
+              )}
+              
+              <button 
+                onClick={() => setIsMapExpanded(!isMapExpanded)}
+                className="flex items-center gap-x-1 text-secondary hover:underline"
+              >
+                {isMapExpanded ? 
+                  <><Minimize size={18} /> Hide Map</> : 
+                  <><Maximize size={18} /> Expand Map</>
+                }
+              </button>
+            </div>
           </div>
           
           <div className="mt-4 flex flex-col gap-y-3">
@@ -145,6 +261,12 @@ export function LocationView({ item }: LocationViewProps) {
                 <span>Get Navigation</span>
               </a>
             </div>
+            
+            {userLocationError && (
+              <div className="mt-2 rounded-md bg-red-50 p-2 text-sm text-red-600">
+                {userLocationError}
+              </div>
+            )}
           </div>
           
           <div className={`mt-4 transition-all duration-500 ${isMapExpanded ? 'h-[500px]' : 'h-[300px]'}`}>
@@ -154,11 +276,13 @@ export function LocationView({ item }: LocationViewProps) {
               description={fullAddress}
               height="100%"
               zoom={isMapExpanded ? 14 : 12}
+              userLocation={userLocation}
             />
           </div>
           
           <p className="mt-3 text-sm text-gray-500">
             Tip: Click on a marker on the map to view detailed information. Double-click or use the scroll wheel to zoom the map.
+            {userLocation && ' Blue dashed line shows the path from your location to the attraction.'}
           </p>
         </div>
         
